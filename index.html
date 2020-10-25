@@ -4,15 +4,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Говори красиво</title>
 </head>
+
+
 <body>
 <div>
 <h1>Видео 1</h1>
+<button onclick="document.getElementById('video_1').play();">Начнем</button>
 </div>
 	<div>
-	<video controls width="400" height="auto" autoplay="autoplay">
-  <source src="video.mp4" type="video/mp4"><!-- MP4 для Safari, IE9, iPhone, iPad, Android, и Windows Phone 7 -->
+	<video controls width="400" height="auto" autoplay="autoplay" id="video_1">
+  <source src="video\video1.mp4" type="video/mp4">
   
 </video>
+<br/>
+<h1>Видео 2</h1>
+<video controls width="400" height="auto" autoplay="autoplay" id="video_2" style="display: none">
+  <source src="video\video2.mp4" type="video/mp4">
+  
+</video>
+
 	</div>
+	
+
 </body>
+<script type='text/javascript'>
+	
+    var v2 = document.getElementById('video_2');
+	
+	if (v2)
+		{
+			addEventListener('ended',myHandler,true);
+			//alert("listner ok");
+		}
+	
+    function myHandler(e) {
+        document.getElementById('video_2').style.display = "block";
+		document.getElementById('video_2').play();
+		//alert("handl");
+    }
+</script>
 </html>
