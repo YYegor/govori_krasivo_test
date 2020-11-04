@@ -1,33 +1,5 @@
 	
-    var v2 = document.getElementById('video_1');
-	
-	if (v2)
-		{
-			v2.addEventListener('ended',myHandler_1,true);
-			//alert("listner ok");
-		}
-	
-    function myHandler_1(e) {
-        document.getElementById('mod2').style.display = "block";
-		document.getElementById('video_2').play();
-		//alert("handl");
-	
-    }
-    
-	var v2 = document.getElementById('video_2');
-	
-	if (v2)
-		{
-			v2.addEventListener('ended',myHandler_2,true);
-			//alert("listner ok");
-		}
-	
-    function myHandler_2(e) {
-        document.getElementById('mod3').style.display = "block";
-		document.getElementById('video_3').play();
-		//alert("handl");
-		}
-
+  
 window.onload = config_load();
 
 function config_load(e)
@@ -35,6 +7,7 @@ function config_load(e)
 			// init all: hide all text bubbles
 			
 			//read config and load content from json
+			console.log("loaded");
 			$("#video1_text_div").hide();
 			$("#video1_uaction_div").hide();
 			$("#video1_div").hide();
@@ -59,18 +32,18 @@ function config_load(e)
 			document.getElementById('video3_text').innerHTML  = mydata[2].module3_text;
 			document.getElementById('video3_uaction').innerHTML  = mydata[2].module3_uaction;
 			document.getElementById('video3').src  = "video\\"+mydata[2].module3_video;
-			$("#video1_text_div").show();
+			
+			$("#video1_text_div").delay(5000).show();
 			$("#video1_uaction_div").show();
-			$("#video1_uaction").click(function (e){ $("#video1_div").show();} );
+			$("#video1_uaction").click(function (e){ $("#video1_div").show(); $('html, body').animate({scrollTop: $("#video1_div").offset().top}, 2000);} );
+			$("#video1").on('ended',function(){$("#video2_text").show(); $("#video2_uaction_div").fadeIn(500);});
 
-			//$("#video1_div").show();
-			
-			//$("#video2_text").show();
-			//$("#video2_uaction_div").show();
-			//$("#video2_div").show();
+			$("#video2_uaction").click(function (e){ $("#video2_div").show(); $('html, body').animate({scrollTop: $("#video2_div").offset().top}, 2000);} );
+			$("#video2").on('ended',function(){$("#video3_text").show(); $("#video3_uaction_div").fadeIn(500); $('html, body').animate({scrollTop: $("#video3_text").offset().top}, 2000);});			
 
-			//$("#video3_uaction_div").show();
-			//$("#video3_div").show();
-			//$("#video3_text").show();
+			$("#video3_uaction").click(function (e){ $("#video3_div").show(); $('html, body').animate({scrollTop: $("#video3_div").offset().top}, 2000);} );
 			
+
+			console.log("config ended");
+
 		}
