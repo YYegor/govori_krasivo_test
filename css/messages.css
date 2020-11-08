@@ -1,11 +1,19 @@
 
+.gamef {
+  z-index: 100;
+  position: fixed;
+  width : 400px;
+  background-color: white;
 
+}
 .chat {
   width: 400px;
   border: solid 1px #EEE;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  top: 50px;
+  position: absolute;
 }
 
 .messages {
