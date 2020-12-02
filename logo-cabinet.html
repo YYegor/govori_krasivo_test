@@ -9,7 +9,7 @@
 	type = "text/css"
 	href = "css\cabinet-body.css" />
 </head>
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="js\cabinet.js"></script>
 
 <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -17,22 +17,41 @@
   crossorigin="anonymous"></script>
 
 <body>
-<div class="h1">Текст для Видео 1</div>
-<textarea name="Text1" cols="40" rows="5" placeholder="Введите текст перед видео"></textarea>
+<div>Ученик: <a href="">Иванов Николай</a> </div>
+<div>Звук Л</div>
+<div>Регулярность занятий: <a href="">98%</a></div>
+<div id="week_number">Неделя: 5 </div>
 
-<div class="h1">Видео 1</div>
-	<select>
+<form id="form">
+<br/>
+<br/>
+<div class="vblock" >
+<p>Блок 1</p>
+<div class="h1">Текст</div>
+<textarea id="text1" name="Text1" cols="40" rows="5" placeholder="Введите текст перед видео"></textarea>
+<br/>
+<br/>
+
+<div class="h1">Видео</div>
+	<div>Раздел 📁 Буква Л</div>
+	<select id="video1" name="video1">
 	<option disabled>Видео 1</option>
-  	<option>Буква Л \ Вводное задание знакомство.mp4</option>
-  	<option>Буква Л \ Вводное задание массаж легкий.mp4</option>
-  	<option>Буква Л \ Вводное задание цокание.mp4</option>
-  	<option>Буква Л \ Вводное задание гимнастика.mp4</option>
-  	<option>Буква Л \ Вводное задание игра простая.mp4</option>
+  	<option value="Вводное задание знакомство.mp4">Вводное задание знакомство</option>
+  	<option value="Вводное задание массаж легкий.mp4">Вводное задание массаж легкий</option>
+  	<option value="Вводное задание цокание.mp4">Вводное задание цокание</option>
+  	<option value="Вводное задание гимнастика.mp4">Вводное задание гимнастика</option>
+  	<option value="Вводное задание игра простая.mp4">Вводное задание игра простая</option>
 </select>
-
+<br/>
+<br/>
 <div class="h1">Текст кнопки Далее</div>
-<textarea name="Text1" cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
+<textarea id="button_text1" name="button_text1 " cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
 
+<br/>
+<br/>
+</div>
+</form>
+<button id="savebutton" onclick="save_config();">Сохранить урок</button>
 
 </body>
 
