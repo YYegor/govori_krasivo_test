@@ -6,6 +6,7 @@ import codecs
 
 DEBUG = True
 week_config_filename = u'data.json'
+audio_filename = u'audio.webm'
 
 def debug_convert_cfg_json(decoded_data):
     '''
@@ -17,10 +18,33 @@ def debug_convert_cfg_json(decoded_data):
     try:
         decoded_data = u"data = '[" + str(decoded_data) + "]';"
     except TypeError as e:
-        print('Ошибка при склейке json и строки')
+        print(u'Ошибка при склейке json и строки конфига недели')
     return decoded_data
 
-def save_to_file(filename, data):
+
+def save_audio_to_file(audio_filename, data):
+    print(u'Сохраняем аудио ', audio_filename)
+    try:
+        f = open(audio_filename, 'wb')
+    except OSError as e:
+        print(u'Не смог открыть на запись файл ', audio_filename)
+        return False
+
+    if DEBUG:
+        print(u'save_audio_to_file данные:', type(data), data)
+
+    try:
+        f.write(data)
+    except OSError:
+        print(u'Не смог записать данные аудио в ', audio_filename)
+        return False
+    finally:
+        f.close()
+
+    return True
+
+
+def save_week_conf_to_file(filename, data):
     print(filename, 'file will be saved')
     try:
         f = codecs.open(filename, 'w+', encoding='utf8')
@@ -34,6 +58,7 @@ def save_to_file(filename, data):
         data = data.decode('utf-8')
     except UnicodeError:
         print(u'Ошибка unicode при конвертации')
+        f.close()
         return False
 
     try:
@@ -58,19 +83,26 @@ def configsuccess():
 
 @app.route('/configfail')
 def configfail():
-    return u'Файл урока не был сохранён.'
+    return u'Файл урока не был сохранён из-за ошибки.'
 
 @app.route('/')
-def hello_world():
-    return u'Hello World!!'
+def hello_server():
+    return u'Сервер готов'
 
+
+@app.route('/save_audio', methods=['POST'])
+def result_audio():
+    print('mime: ', request.mimetype, len(request.mimetype),  file=sys.stderr)
+    print('data: ', request.get_data(), file=sys.stderr)
+
+    if save_audio_to_file(audio_filename, request.get_data()):
+        return jsonify({"redirect": "configsuccess"})
+    else:
+        return jsonify({"redirect": "configfail"})
 
 @app.route('/', methods=['POST'])
 def result():
-    # print(request.form['foo']) # should display 'bar'
-    print(request.json, file=sys.stderr)
-
-    if save_to_file(week_config_filename, request.data):
+    if save_week_conf_to_file(week_config_filename, request.data):
         return jsonify({"redirect": "configsuccess"})
     else:
         return jsonify({"redirect": "configfail"})
