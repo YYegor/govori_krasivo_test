@@ -1,0 +1,23 @@
+* {
+ 
+ font-family: helvetica;
+}
+
+body {
+  font-family: helvetica;
+
+  flex-direction: column;
+
+}
+
+.vblock {
+	background-color: #f0f0f0;
+	flex-direction: column;
+	}
+
+.bib {
+	background-color: #f0f0f0;
+	float:right;
+}
+
+
