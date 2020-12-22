@@ -1,23 +1,12 @@
 # -*- coding: utf-8 -*-
 # 02.12.2020, created by Egor Eremenko
 import sys
-from flask import Flask, request, redirect, url_for, jsonify, render_template
+from flask import Flask, request, redirect, url_for, jsonify
 import codecs
-
-from werkzeug.routing import BaseConverter
-
-
-class RegexConverter(BaseConverter):
-    def __init__(self, url_map, *items):
-        super(RegexConverter, self).__init__(url_map)
-        self.regex = items[0]
-
-
-
 
 DEBUG = True
 week_config_filename = u'data.json'
-audio_filename = u'user_content_audio/audio.webm'
+audio_filename = u'audio.webm'
 
 def debug_convert_cfg_json(decoded_data):
     '''
@@ -87,38 +76,18 @@ def save_week_conf_to_file(filename, data):
 
 
 app = Flask(__name__)
-#включить поддержку regex
-app.url_map.converters['regex'] = RegexConverter
 
 @app.route('/configsuccess')
-def config_success():
+def configsuccess():
     return u'Файл урока принят и сохранён.'
 
 @app.route('/configfail')
-def config_fail():
+def configfail():
     return u'Файл урока не был сохранён из-за ошибки.'
-
-
-#ключ для пользователя для страницы
-@app.route('/<regex("[a-f0-9]{7}"):uid>')
-def user_week_config(uid):
-    #return u'Пользователь %s' % (uid)
-    print (u'data_' + str(uid) + '.json')
-    return render_template('user_week_template.html', config_path=u'data_' + str(uid) + '.json')
-
 
 @app.route('/')
 def hello_server():
     return u'Сервер готов'
-
-
-@app.route('/logo_cabinet')
-def logo_cabinet():
-    return render_template('logo_cabinet.html')
-
-@app.route('/mic_audio_index')
-def user_mic_test():
-    return render_template('mic_audio_index.html')
 
 
 @app.route('/save_audio', methods=['POST'])
