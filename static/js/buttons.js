@@ -33,15 +33,15 @@ function config_load(e)
 
 			$("#video1_text").html(mydata[0].module1_text);
 			$("#video1_uaction").html(mydata[0].module1_uaction);
-			$("#video1").attr("src","video\\"+mydata[0].module1_video);
+			$("#video1").attr("src","static/video\\"+mydata[0].module1_video);
 
 			$("#video2_text").html(mydata[0].module2_text);
 			$("#video2_uaction").html(mydata[0].module2_uaction);
-			$("#video2").attr("src","video\\"+mydata[0].module2_video);
+			$("#video2").attr("src","static/video\\"+mydata[0].module2_video);
 			
 			$("#video3_text").html(mydata[0].module3_text);
 			$("#video3_uaction").html(mydata[0].module3_uaction);
-			$("#video3").attr("src", "video\\"+mydata[0].module3_video);
+			$("#video3").attr("src", "static/video\\"+mydata[0].module3_video);
 			
 			// all elements are hidden
 			
