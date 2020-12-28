@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 # 02.12.2020, created by Egor Eremenko
 import sys
-from flask import Flask, request, redirect, url_for, jsonify, render_template
+from flask import Flask, request, jsonify, render_template
 import codecs
 
 from werkzeug.routing import BaseConverter
-
+from werkzeug import secure_filename
 
 class RegexConverter(BaseConverter):
     def __init__(self, url_map, *items):
         super(RegexConverter, self).__init__(url_map)
         self.regex = items[0]
-
-
 
 
 DEBUG = True
@@ -42,10 +40,10 @@ def save_audio_to_file(audio_filename, data):
         return False
 
     if DEBUG:
-        print(u'save_audio_to_file данные:', type(data), data)
+        print(u'save_audio_to_file данные:', type(data))
 
     try:
-        f.write(data)
+        f.write(bytes(data))
     except OSError:
         print(u'Не смог записать данные аудио в ', audio_filename)
         return False
@@ -56,7 +54,8 @@ def save_audio_to_file(audio_filename, data):
 
 
 def save_week_conf_to_file(filename, data):
-    print(filename, 'file will be saved')
+    if DEBUG:
+        print(filename, 'file will be saved')
     try:
         f = codecs.open(filename, 'w+', encoding='utf8')
     except OSError as e:
@@ -64,7 +63,7 @@ def save_week_conf_to_file(filename, data):
         return False
 
     if DEBUG:
-        print('save_to_file data:', data)
+        print('save_week_conf_to_file data:', data)
     try:
         data = data.decode('utf-8')
     except UnicodeError:
@@ -91,24 +90,24 @@ app = Flask(__name__)
 app.url_map.converters['regex'] = RegexConverter
 
 @app.route('/configsuccess')
-def config_success():
+def logo_config_success():
     return u'Файл урока принят и сохранён.'
 
 @app.route('/configfail')
-def config_fail():
+def logo_config_fail():
     return u'Файл урока не был сохранён из-за ошибки.'
 
 
 #ключ для пользователя для страницы
 @app.route('/<regex("[a-f0-9]{7}"):uid>')
-def user_week_config(uid):
+def user_week_config_open(uid):
     #return u'Пользователь %s' % (uid)
     print (u'data_' + str(uid) + '.json')
-    return render_template('user_week_template.html', config_path=u'data_' + str(uid) + '.json')
+    return render_template('user_week_template.html', config_path=u'data_' + str(uid) + '.json', uid=uid)
 
 
 @app.route('/')
-def hello_server():
+def user_hello_server():
     return u'Сервер готов'
 
 
@@ -116,23 +115,26 @@ def hello_server():
 def logo_cabinet():
     return render_template('logo_cabinet.html')
 
-@app.route('/mic_audio_index')
-def user_mic_test():
-    return render_template('mic_audio_index.html')
+# @app.route('/mic_audio_index')
+# def user_mic_test():
+#     return render_template('mic_audio_index.html')
 
 
 @app.route('/save_audio', methods=['POST'])
-def result_audio():
-    print('mime: ', request.mimetype, len(request.mimetype),  file=sys.stderr)
-    print('data: ', request.get_data(), file=sys.stderr)
+def user_audio_save():
+    print('mime: ', request.mimetype,  file=sys.stderr)
+    print('get data: ', request.get_data(), file=sys.stderr)
+    print('get json: ', request.get_json(), file=sys.stderr)
+    print('get form: ', type(request.files['audio']), file=sys.stderr)
+    request.files['audio'].save(audio_filename)
 
-    if save_audio_to_file(audio_filename, request.get_data()):
-        return jsonify({"redirect": "configsuccess"})
-    else:
-        return jsonify({"redirect": "configfail"})
+    #if save_audio_to_file(audio_filename, request.files['audio']):
+    return jsonify({"redirect": "configsuccess"})
+    #else:
+    #    return jsonify({"redirect": "configfail"})
 
 @app.route('/', methods=['POST'])
-def result():
+def logo_config_save():
     if save_week_conf_to_file(week_config_filename, request.data):
         return jsonify({"redirect": "configsuccess"})
     else:

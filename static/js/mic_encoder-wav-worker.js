@@ -22,7 +22,7 @@ function encode (buffer) {
 }
 
 function dump (sampleRate) {
-  alert("dump")
+  
   let bufferLength = recorded.length ? recorded[0].length : 0
   let length = recorded.length * bufferLength
   let wav = new Uint8Array(44 + length)
@@ -63,7 +63,7 @@ function dump (sampleRate) {
   recorded = []
   let msg = [wav.buffer]
   //postMessage(msg, [msg[0]])
-  alert("view")
+  
   postMessage(view, [view[0]])
 }
 

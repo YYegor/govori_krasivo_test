@@ -1,6 +1,6 @@
 "use strict";
  var url = 'http://127.0.0.1:5000/save_audio';
-
+ 
 class App {
   constructor () {
     this.btnRecord = document.getElementById('btn-record');
@@ -13,7 +13,7 @@ class App {
     this.isRecording = false
     this.saveNextRecording = false
 
-    this.debugTxt.innerHTML = "stopped"
+    this.debugTxt.innerHTML = "остановлено"
   }
 
   init () {
@@ -29,7 +29,7 @@ class App {
 
       this.btnRecord.disabled = true
       this.btnStop.disabled = false
-      this.debugTxt.innerHTML = "recording"
+      this.debugTxt.innerHTML = "запись..."
     })
 
     this.btnStop.addEventListener('click', evt => {
@@ -37,7 +37,7 @@ class App {
 
       this.btnRecord.disabled = false
       this.btnStop.disabled = true
-      this.debugTxt.innerHTML = "stopped"
+      this.debugTxt.innerHTML = "остановлено"
     })
   }
 
@@ -59,7 +59,7 @@ class App {
 
     this.recorderSrvc.startRecording()
     this.isRecording = true
-    this.debugTxt.innerHTML = "recording..."
+    this.debugTxt.innerHTML = "запись..."
   }
 
   _stopAllRecording () {
@@ -98,11 +98,17 @@ class App {
     reader.readAsArrayBuffer(evt.detail.recording.blob)
     reader.onloadend = (event) => {
     // The contents of the BLOB are in reader.result:
-      console.log("data", reader.result);
+      //console.log("data", reader.result);
+      
+      // pack blob and uid data to FormData
+      var formData= new FormData();
+      formData.append('audio', evt.detail.recording.blob, 'blob');
+      formData.append('uid', uid_);
 
           $.ajax(url, {
-          data : reader.result,
-          contentType : 'audio/webm;codecs=opus',
+          data : formData,
+          //contentType : 'audio/webm;codecs=opus',
+          contentType : false,
           processData: false,
           type : 'POST',
           success: function (data) {

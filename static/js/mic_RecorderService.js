@@ -1,7 +1,7 @@
 class RecorderService {
   constructor () {
     window.AudioContext = window.AudioContext || window.webkitAudioContext
-    alert("Recorder service start")
+    console.log("Recorder service запущен")
     this.em = document.createDocumentFragment()
 
     this.state = 'inactive'
@@ -30,7 +30,7 @@ class RecorderService {
 
     // This is the case on ios/chrome, when clicking links from within ios/slack (sometimes), etc.
     if (!navigator || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      alert('Missing support for navigator.mediaDevices.getUserMedia') // temp: helps when testing for strange issues on ios/safari
+      alert('Нет поддержки для navigator.mediaDevices.getUserMedia') // temp: helps when testing for strange issues on ios/safari
       return
     }
 
@@ -73,7 +73,7 @@ class RecorderService {
         this._startRecordingWithStream(stream)
       })
       .catch((error) => {
-        alert('Error with getUserMedia: ' + error.message) // temp: helps when testing for strange issues on ios/safari
+        alert('Ошибка с getUserMedia: ' + error.message) // temp: helps when testing for strange issues on ios/safari
         console.log(error)
       })
   }
