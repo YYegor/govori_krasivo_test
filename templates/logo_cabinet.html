@@ -7,61 +7,59 @@
 	
 	<link rel = "stylesheet"
 	type = "text/css"
-	href = "css\cabinet-body.css" />
+	href = "{{ url_for('static', filename='css/cabinet-body.css') }}" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<script type="text/javascript" src="js\cabinet.js"></script>
-
+<script type="text/javascript" src="{{ url_for('static', filename='js/cabinet.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='config.json') }}"></script>
 <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
 
 <body>
-<div>Ученик: <a href="">Иванов Николай</a> </div>
-<div>Звук Л</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form id="form">  
+<div>Ученик: 
+<select id="client" name="client">
+{% for c in clients %}
+<option value="{{ c[1] }}">{{ c[0] }}</option>
+{% endfor %}
+</select>
+</div><br/>
+
+
+
+<div>📁 Буква Л</div>
 <div>Регулярность занятий: <a href="">98%</a></div>
 <div id="week_number">Неделя: 5 </div>
 
-<div class="bib">
-  <h1>Библиотека текста Общее</h1>
-  <p><a href="" title="Копировать">📋</a>Разуть ребенка. Прошлогодние рассказы не принесли пользы. Пройти по правой стороне.</p>
-  <p><a href="" title="Копировать">📋</a>На лесной поляне выросла земленика. Лиса проживала в неглубокой норе.</p>
-  <p><a href="" title="Копировать">📋</a>Ла-ла-ла-дела, мела, пела. Ло-ло-ло-ложка, ложно, ломка.</p>
-  <p><a href="" title="Копировать">📋</a>Ело-ело-Камнеломка</p>
 
-  <h1>Библиотека текста с Л</h1>
-  <p><a href="" title="Копировать">📋</a>Лисицы лают. Глухомань.<br/>
-Лежит в листве под липой лань.<br/>
-Линь в глубине холодных вод<br/>
-Лениво, но легко плывёт.<br/>
-Луна. Лучится как латунь,<br/>
-Лягушкой лакомится лунь.<br/>
-Летит заблудшая пчела.<br/>
-Легла на лес ночная мгла.</p>
-</div>
 
-<form id="form">
+
 <br/><br/>
 <div class="vblock" >
-<p>Блок 1</p>
-<div class="h1">Текст</div>
+
+<div class="h1">Блок 1</div>
+<div class="h2">Текст</div>
 <textarea id="module1_text" name="module1_text" cols="40" rows="5" placeholder="Введите текст перед видео"></textarea>
 <br/><br/>
 
-<div class="h1">Видео</div>
-	<div>Раздел 📁 Буква Л</div>
-	<select id="module1_video" name="module1_video">
-	<option disabled>Видео 1</option>
-  	<option value="Вводное задание знакомство.mp4">Вводное задание знакомство</option>
-  	<option value="Вводное задание массаж легкий.mp4">Вводное задание массаж легкий</option>
-  	<option value="Вводное задание цокание.mp4">Вводное задание цокание</option>
-  	<option value="Вводное задание гимнастика.mp4">Вводное задание гимнастика</option>
-  	<option value="Вводное задание игра простая.mp4">Вводное задание игра простая</option>
+<div class="h2">Видео</div>
+  <div>Раздел 📁 Буква Л</div>
+  <select id="module1_video" name="module1_video">
+  <option disabled>Видео 1</option>
+  {% for v in video %}
+  <option value="{{ v[3] }}">{{ v[3] }}</option>
+  {% endfor %}
 </select>
 <br/>
 <br/>
-<div class="h1">Текст кнопки Далее</div>
-<textarea id="module1_uaction" name="module1_uaction" cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
+<input type="checkbox" name="module1_rec" id="module1_rec" value="yes">Запросить запись <br/><br/>
+<div class="h2">Текст кнопки Далее</div>
+<input id="module1_uaction" name="module1_uaction" cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
 
 <br/>
 <br/>
@@ -69,25 +67,24 @@
 
 
 <div class="vblock" >
-<p>Блок 2</p>
-<div class="h1">Текст</div>
+
+<div class="h1">Блок 2</div>
+<div class="h2">Текст</div>
 <textarea id="module2_text" name="module2_text" cols="40" rows="5" placeholder="Введите текст перед видео"></textarea>
 <br/><br/>
 
-<div class="h1">Видео</div>
-	<div>Раздел 📁 Буква Л</div>
-	<select id="module2_video" name="module2_video">
-	<option disabled>Видео 2</option>
-  	<option value="Вводное задание знакомство.mp4">Вводное задание знакомство</option>
-  	<option value="Вводное задание массаж легкий.mp4">Вводное задание массаж легкий</option>
-  	<option value="Вводное задание цокание.mp4">Вводное задание цокание</option>
-  	<option value="Вводное задание гимнастика.mp4">Вводное задание гимнастика</option>
-  	<option value="Вводное задание игра простая.mp4">Вводное задание игра простая</option>
+<div class="h2">Видео</div>
+  <div>Раздел 📁 Буква Л</div>
+  <select id="module2_video" name="module2_video">
+  <option disabled>Видео 2</option>
+  {% for v in video %}
+  <option value="{{ v[3] }}">{{ v[3] }}</option>
+  {% endfor %}
 </select>
 <br/>
 <br/>
-<div class="h1">Текст кнопки Далее</div>
-<textarea id="module2_uaction" name="module2_uaction" cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
+<div class="h2">Текст кнопки Далее</div>
+<input id="module2_uaction" name="module2_uaction" cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
 
 <br/>
 <br/>
@@ -100,19 +97,18 @@
 <br/><br/>
 
 <div class="h1">Видео</div>
-	<div>Раздел 📁 Буква Л</div>
-	<select id="module3_video" name="module3_video">
-	<option disabled>Видео 3</option>
-  	<option value="Вводное задание знакомство.mp4">Вводное задание знакомство</option>
-  	<option value="Вводное задание массаж легкий.mp4">Вводное задание массаж легкий</option>
-  	<option value="Вводное задание цокание.mp4">Вводное задание цокание</option>
-  	<option value="Вводное задание гимнастика.mp4">Вводное задание гимнастика</option>
-  	<option value="Вводное задание игра простая.mp4">Вводное задание игра простая</option>
+  <div>Раздел 📁 Буква Л</div>
+  <select id="module3_video" name="module3_video">
+  <option disabled>Видео 3</option>
+  {% for v in video %}
+  <option value="{{ v[3] }}">{{ v[3] }}</option>
+  {% endfor %}
 </select>
 <br/>
 <br/>
+
 <div class="h1">Текст кнопки Далее</div>
-<textarea id="module3_uaction" name="module3_uaction " cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
+<input id="module3_uaction" name="module3_uaction " cols="40" rows="5" placeholder="Введите текст на кнопке Далее"></textarea>
 
 <br/>
 <br/>
@@ -121,6 +117,18 @@
 
 </form>
 <button id="savebutton" onclick="save_config();">Сохранить урок</button>
+    </div>
+    <div class="col">
+    <div class="bib">
+      <button id="libload" onclick="load_lib();">Загрузить библиотеку для Л</button>
+  <div id="libtext_div">Библиотека текста Общее</div>
+  
+</div>
+    </div>
+  </div>
+</div>
+
+
 
 </body>
 

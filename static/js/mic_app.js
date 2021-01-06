@@ -1,11 +1,12 @@
 "use strict";
- var url = 'http://127.0.0.1:5000/save_audio';
- 
+ var url = '/save_audio';
+ var formData = new FormData();
+
 class App {
   constructor () {
     this.btnRecord = document.getElementById('btn-record');
     this.btnStop = document.getElementById('btn-stop');
-
+    this.btnSend = document.getElementById('btn-send');
     this.debugTxt = document.getElementById('debug-txt')
 
     this.recordingsCont = document.getElementById('recordings-cont')
@@ -13,7 +14,7 @@ class App {
     this.isRecording = false
     this.saveNextRecording = false
 
-    this.debugTxt.innerHTML = "остановлено"
+    this.debugTxt.innerHTML = "Остановлено"
   }
 
   init () {
@@ -37,8 +38,34 @@ class App {
 
       this.btnRecord.disabled = false
       this.btnStop.disabled = true
+      this.btnSend.disabled = false
       this.debugTxt.innerHTML = "остановлено"
     })
+
+    this.btnSend.addEventListener('click', evt => {
+      this.btnRecord.disabled = true
+      this.btnStop.disabled = true
+      this.btnSend.disabled = true
+      //this.debugTxt.innerHTML = "отправлено"
+      $.ajax(url,
+          {
+          data : formData,
+          //contentType : 'audio/webm;codecs=opus',
+          contentType : false,
+          processData: false,
+          type : 'POST',
+          success: function (data) {
+                  console.log("audio sending: success");
+                  $('#debug-txt').html("Отправлено успешно")
+                  formData = new FormData();
+                },
+          error: function() {
+                  console.log("audio sending: failed");
+                  $('#debug-txt').html("Ошибка отправки!")
+                          }
+            });
+
+    })  
   }
 
   _startRecording () {
@@ -92,36 +119,25 @@ class App {
     console.log("mimetype",evt.detail.recording.mimeType)
     console.log("blobUrl", evt.detail.recording.blobUrl)
     console.log("blobsize", evt.detail.recording.size)
-    const reader = new FileReader();
+    //const reader = new FileReader();
     
-    console.log("data raw ", evt.detail.recording.blob)
-    reader.readAsArrayBuffer(evt.detail.recording.blob)
-    reader.onloadend = (event) => {
+    // console.log("data raw ", evt.detail.recording.blob)
+    //reader.readAsArrayBuffer(evt.detail.recording.blob)
+    //reader.onloadend = (event) => {
+    
     // The contents of the BLOB are in reader.result:
       //console.log("data", reader.result);
       
       // pack blob and uid data to FormData
-      var formData= new FormData();
-      formData.append('audio', evt.detail.recording.blob, 'blob');
-      formData.append('uid', uid_);
+    
+    formData.append('audio', evt.detail.recording.blob, 'blob');
+    formData.append('uid', uid_);
 
-          $.ajax(url, {
-          data : formData,
-          //contentType : 'audio/webm;codecs=opus',
-          contentType : false,
-          processData: false,
-          type : 'POST',
-          success: function (data) {
-            console.log("success");
-            },
-          error: function() {
-            console.log("failed");
-          }
-              
-        });
+
+    recordingEl.type = evt.detail.recording.mimeType
 
     }
 
-    recordingEl.type = evt.detail.recording.mimeType
+    
   }
-}
+

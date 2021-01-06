@@ -1,16 +1,36 @@
+
+function config_load()
+{
+ console.log("config_load start") 
+ var cfg = JSON.parse(cfgdata);
+ console.log("config_load "+cfg[0].app_server)
+}
+
+function load_lib()
+{
+  console.log("load_lib start")
+  
+  url = '/logo_text';
+  $.get( url, function( data ) {
+    $( "#libtext_div" ).html( data );
+    console.log( "load_lib success" );
+});
+}
+
+
 function save_config(e)
 {	
 	console.log("save config start");
-	console.log($("#module1_text").val());
-	console.log($("#module1_video").val());
-	console.log($("#module1_uaction").val());
+	//console.log($("#module1_text").val());
+	//console.log($("#module1_video").val());
+	//console.log($("#module1_uaction").val());
 	
   	
 
-  	url = 'http://127.0.0.1:5000/';
-
+  url = '/save_week';
+  
 	
-	function getFormData($form){
+  	function getFormData($form){
     var unindexed_array = $form.serializeArray();
     var indexed_array = {};
 
@@ -23,22 +43,18 @@ function save_config(e)
 	
 	
 	var datas = getFormData($("#form"));
-	
-	
+
   	
   	$.ajax(url, {
     data : JSON.stringify(datas),
     contentType : 'application/json',
     type : 'POST',
     success: function (data) {
-    	console.log("success");
-    	if (data.redirect)
-    	{
-    			window.location.href = url + data.redirect;
-		}
+      	console.log("week save success");
+  
 	},
     error: function() {
-    	console.log("failed");
+    	console.log("week save failed");
     }
         
   });
