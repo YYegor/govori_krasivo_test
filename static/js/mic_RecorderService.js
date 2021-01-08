@@ -57,7 +57,7 @@ class RecorderService {
     // Create web worker for doing the encoding
     if (!this.config.usingMediaRecorder) {
       alert("Create web worker for doing the encoding")
-      this.encoderWorker = new Worker('js/mic_encoder-wav-worker.js')
+      this.encoderWorker = new Worker('static/js/mic_encoder-wav-worker.js')
       this.encoderMimeType = 'audio/wav'
 
       this.encoderWorker.addEventListener('message', (e) => {

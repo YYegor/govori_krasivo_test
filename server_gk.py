@@ -23,7 +23,7 @@ app.url_map.converters['regex'] = RegexConverter
 
 def audio_full_path_gen(user_uid='', file_ext=u'webm', filename_prefix=u'a'):
     timestamp = dt.datetime.now().strftime("%y%m%d_%H%M%S_%f")
-    return cfg.audio_folder + u'\\' + str(filename_prefix) + u'_' + str(user_uid) + u'_' + timestamp + u'.' + str(
+    return cfg.audio_folder + u'/' + str(filename_prefix) + u'_' + str(user_uid) + u'_' + timestamp + u'.' + str(
         file_ext)
 
 
@@ -99,4 +99,4 @@ app.register_blueprint(ls.logo_save_fail_bp)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')

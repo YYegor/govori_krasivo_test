@@ -25,7 +25,7 @@ def save_week_conf_to_file(data, filename=u'data.json'):
     r = loads(data.decode())
     client_id = r['client']
     # TODO: заменить имя файла на автоматическое
-    filename = cfg.week_cfg_folder + '\\' + u'data_' + str(client_id) + u'.json'
+    filename = cfg.week_cfg_folder + '/' + u'data_' + str(client_id) + u'.json'
 
     if cfg.DEBUG:
         print(filename, 'file will be saved')

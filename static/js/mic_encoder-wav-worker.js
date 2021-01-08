@@ -62,9 +62,7 @@ function dump (sampleRate) {
 
   recorded = []
   let msg = [wav.buffer]
-  //postMessage(msg, [msg[0]])
-  
-  postMessage(view, [view[0]])
+  postMessage(msg, [msg[0]])
 }
 
 onmessage = function (e) {
