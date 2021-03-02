@@ -109,7 +109,11 @@ def get_text_data(sound='Р'):
     except:
         pass
     tags_requested = list(set(tags_requested))
-    text_coll = ext_data.get_sound_collection(sound)
+    # если библиотека загружена заново (пустые теги), то перечитать библиотеку из googledocs
+    if tags_requested == []:
+        text_coll = ext_data.get_sound_collection(sound, nocache=True)
+    else:
+        text_coll = ext_data.get_sound_collection(sound)
     # all_tags = ext_data.find_sound_collection_tags(text_coll)
 
     selected_lines = ext_data.find_text_by_tag(text_coll, tags_requested)

@@ -172,7 +172,7 @@ def get_user_crm_data():
 
     return clients
 
-
+@lru_cache(maxsize=8)
 def get_text_library():
     # If modifying these scopes, delete the file token.pickle.
     SCOPES = cfg.g_scope_docs_read_only
@@ -252,10 +252,15 @@ def text_lib_get_s_collection(sound_content: list):
             collection.append(str_temp)
     return collection
 
-@lru_cache(maxsize=16)
-def get_sound_collection(sound=u'Л'):
+
+def get_sound_collection(sound=u'Л', nocache=False):
     content = []
-    content = get_text_library()
+    if nocache:
+        get_text_library.cache_clear()
+        content = get_text_library()
+
+    else:
+        content = get_text_library()
 
     return_list = []
     p0 = None
