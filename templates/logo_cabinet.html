@@ -34,9 +34,8 @@
 
 <div>📁 Буква Л</div>
 <div>Регулярность занятий: <a href="">98%</a></div>
-<div id="week_number">Неделя: 5 </div>
-
-
+        <div id="week_number">Неделя: 5 </div>
+        <div>Выполнить до: 15 Января 2021</div>
 
 
 <br/><br/>
@@ -52,7 +51,7 @@
   <select id="module1_video" name="module1_video">
   <option disabled>Видео 1</option>
   {% for v in video %}
-  <option value="{{ v[3] }}">{{ v[3] }}</option>
+  <option value="{{ v[4] }}">{{ v[4] }}</option>
   {% endfor %}
 </select>
 <br/>
@@ -78,7 +77,7 @@
   <select id="module2_video" name="module2_video">
   <option disabled>Видео 2</option>
   {% for v in video %}
-  <option value="{{ v[3] }}">{{ v[3] }}</option>
+  <option value="{{ v[4] }}">{{ v[4] }}</option>
   {% endfor %}
 </select>
 <br/>
@@ -101,7 +100,7 @@
   <select id="module3_video" name="module3_video">
   <option disabled>Видео 3</option>
   {% for v in video %}
-  <option value="{{ v[3] }}">{{ v[3] }}</option>
+  <option value="{{ v[4] }}">{{ v[4] }}</option>
   {% endfor %}
 </select>
 <br/>
@@ -120,7 +119,7 @@
     </div>
     <div class="col">
     <div class="bib">
-      <button id="libload" onclick="load_lib();">Загрузить библиотеку для Л</button>
+      <button id="libload" onclick="load_lib();">Загрузить библиотеку для Р</button>
   <div id="libtext_div">Библиотека текста Общее</div>
   
 </div>

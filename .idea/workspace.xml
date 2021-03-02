@@ -25,29 +25,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03856ff6-6d90-441c-a418-c5e57fdc1ac5" name="Default Changelist" comment="user_content_audio folder">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Egor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__audio.webm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__data.json_bak" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json_bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mic_audio_index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/server_test.py" afterDir="false" />
+    <list default="true" id="03856ff6-6d90-441c-a418-c5e57fdc1ac5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/logo_text_sugg.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_unit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crm.py" beforeDir="false" afterPath="$PROJECT_DIR$/ext_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo_stuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/logo_stuff.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/secret/token.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/secret/token.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/secret/token_docs.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/secret/token_docs.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server_gk.py" beforeDir="false" afterPath="$PROJECT_DIR$/server_gk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/cabinet.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/cabinet.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/mic_RecorderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/mic_RecorderService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/mic_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/mic_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/mic_encoder-wav-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/mic_encoder-wav-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mic_audio_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mic_audio_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/logo_cabinet.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/logo_cabinet.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user_week_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_week_template.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,14 +54,23 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1l76yOcKTqqaXR2Lk8cxzUPFaeO" />
   <component name="ProjectViewState">
@@ -80,13 +79,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/YandexDisk" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
   </component>
-  <component name="RunManager">
-    <configuration name="server_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="PyFindUsagesOptions">
+    <option name="isSearchForTextOccurrences" value="true" />
+  </component>
+  <component name="RunManager" selected="Python.ext_data (1)">
+    <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,7 +102,96 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server_test.py" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/config.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ext_data (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ext_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="logo_stuff" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/logo_stuff.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="server_gk" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server_gk.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_unit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_unit.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -109,7 +202,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.server_test" />
+        <item itemvalue="Python.server_gk" />
+        <item itemvalue="Python.ext_data (1)" />
+        <item itemvalue="Python.logo_stuff" />
+        <item itemvalue="Python.test_unit" />
+        <item itemvalue="Python.config" />
       </list>
     </recent_temporary>
   </component>
@@ -124,6 +221,31 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606936035600</updated>
+      <workItem from="1610128840615" duration="1144000" />
+      <workItem from="1610353802065" duration="2941000" />
+      <workItem from="1610357841384" duration="32000" />
+      <workItem from="1610360899305" duration="2109000" />
+      <workItem from="1610397890719" duration="2808000" />
+      <workItem from="1610447139294" duration="3000" />
+      <workItem from="1610569881064" duration="3161000" />
+      <workItem from="1610609032311" duration="5031000" />
+      <workItem from="1611006301463" duration="174000" />
+      <workItem from="1611059453660" duration="622000" />
+      <workItem from="1611135825227" duration="1402000" />
+      <workItem from="1611513955119" duration="324000" />
+      <workItem from="1611609924455" duration="5148000" />
+      <workItem from="1612187549717" duration="3213000" />
+      <workItem from="1612254911320" duration="1004000" />
+      <workItem from="1612286437522" duration="18000" />
+      <workItem from="1612286507762" duration="597000" />
+      <workItem from="1612383963835" duration="9505000" />
+      <workItem from="1613128990677" duration="1364000" />
+      <workItem from="1613307012367" duration="1352000" />
+      <workItem from="1613320086466" duration="607000" />
+      <workItem from="1613372885577" duration="1319000" />
+      <workItem from="1613420690224" duration="4006000" />
+      <workItem from="1614341377203" duration="52000" />
+      <workItem from="1614444486376" duration="20589000" />
     </task>
     <task id="LOCAL-00001" summary="new python server part">
       <created>1606944859962</created>
@@ -167,8 +289,32 @@
       <option name="project" value="LOCAL" />
       <updated>1608675929127</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Сохранение аудио записи из чата.&#10;Переделаны шаблоны страниц для работы с flask.">
+      <created>1609147654077</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609147654077</updated>
+    </task>
+    <task id="LOCAL-00008" summary="python рефакторинг по модулям. элемент для записи переделан. подгрузка клиентов из google-sheet, текстов из google-docs">
+      <created>1609955884513</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609955884513</updated>
+    </task>
+    <task id="LOCAL-00009" summary="python рефакторинг по модулям. элемент для записи переделан. подгрузка клиентов из google-sheet, текстов из google-docs">
+      <created>1609956330957</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1609956330957</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -200,6 +346,14 @@
     <MESSAGE value="неполная переделка под flask templates" />
     <MESSAGE value="flask templates" />
     <MESSAGE value="js with static video path" />
-    <option name="LAST_COMMIT_MESSAGE" value="js with static video path" />
+    <MESSAGE value="Сохранение аудио записи из чата.&#10;Переделаны шаблоны страниц для работы с flask." />
+    <MESSAGE value="python рефакторинг по модулям. элемент для записи переделан. подгрузка клиентов из google-sheet, текстов из google-docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="python рефакторинг по модулям. элемент для записи переделан. подгрузка клиентов из google-sheet, текстов из google-docs" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/project$test_unit.coverage" NAME="test_unit Coverage Results" MODIFIED="1612439655565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$server_gk.coverage" NAME="server_gk Coverage Results" MODIFIED="1614694134975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$ext_data__1_.coverage" NAME="ext_data (1) Coverage Results" MODIFIED="1614694002520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$logo_stuff.coverage" NAME="logo_stuff Coverage Results" MODIFIED="1614693994538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

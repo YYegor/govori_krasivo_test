@@ -6,7 +6,6 @@ from flask import Flask, request, jsonify, render_template, url_for
 import datetime as dt
 from werkzeug.routing import BaseConverter
 from flask import send_from_directory
-import os
 import logo_stuff as ls
 import config as cfg
 
@@ -23,7 +22,7 @@ app.url_map.converters['regex'] = RegexConverter
 
 def audio_full_path_gen(user_uid='', file_ext=u'webm', filename_prefix=u'a'):
     timestamp = dt.datetime.now().strftime("%y%m%d_%H%M%S_%f")
-    return cfg.audio_folder + u'/' + str(filename_prefix) + u'_' + str(user_uid) + u'_' + timestamp + u'.' + str(
+    return cfg.audio_folder_dash + str(filename_prefix) + u'_' + str(user_uid) + u'_' + timestamp + u'.' + str(
         file_ext)
 
 
@@ -69,17 +68,20 @@ def user_audio_save():
 
     return jsonify({"redirect": "configsuccess"})
 
-
+@app.route('/'+cfg.audio_folder+'/<regex("a.*\.webm"):file>')
+def get_user_audio_webm(file):
+    print(file)
+    return send_from_directory(cfg.audio_folder_dash, file, mimetype='audio/webm')
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(cfg.static, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 # ключ для пользователя для страницы
 @app.route('/<regex("[a-f0-9]{7}"):uid>')
 def user_week_config_open(uid):
     # return u'Пользователь %s' % (uid)
+
     print(u'data_' + str(uid) + '.json')
     return render_template('user_week_template.html', config_path=u'data_' + str(uid) + '.json', uid=uid)
 
@@ -89,14 +91,29 @@ def user_hello_server():
     return u'Сервер готов'
 
 
+#секция ошибок
+def error_404(e):
+    #TODO включить логи 404
+    return 'Ой! Такой страницы нет. Попробуйте другой адрес :)', 404
+app.register_error_handler(404, error_404)
+
+def error_500(e):
+    #TODO включить логи 500
+    return 'Ой! Что-то сломалось на стороне сервера. Мы уже чиним!<br/>', 500
+app.register_error_handler(500, error_500)
+
+
 # подключение модуля логопеда
 app.register_blueprint(ls.logo_cabinet_bp)
 app.register_blueprint(ls.logo_text_bp)
+app.register_blueprint(ls.logo_text_post_bp)
 app.register_blueprint(ls.logo_save_week_bp)
 app.register_blueprint(ls.logo_save_success_bp)
 app.register_blueprint(ls.logo_save_fail_bp)
+app.register_blueprint(ls.logo_new_task_bp)
+
 
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run()

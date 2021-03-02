@@ -1,4 +1,5 @@
-
+var i = 0
+var tags = []
 function config_load()
 {
  console.log("config_load start") 
@@ -9,12 +10,35 @@ function config_load()
 function load_lib()
 {
   console.log("load_lib start")
-  
+  tags = []
+  console.log("load_lib", tags)
+
+  var data_get = { sound: "Р", "tags[]": tags};
+  console.log( "load_lib", data_get )
   url = '/logo_text';
-  $.get( url, function( data ) {
+  $.get( url, data_get, function( data ) {
+
     $( "#libtext_div" ).html( data );
     console.log( "load_lib success" );
 });
+}
+
+function load_lib_tags(tag)
+{
+  console.log("load_lib_tags start")
+  console.log(tag)
+  tags.push(tag)
+  console.log(tags)
+  var data_get = { sound: "Р", "tags[]": tags};
+
+  console.log( "load_lib_tags", data_get )
+  url = '/logo_text';
+  $.get( url, data_get, function( data ) {
+
+    $( "#libtext_div" ).html( data );
+    console.log( "load_lib_tags success" );
+});
+
 }
 
 

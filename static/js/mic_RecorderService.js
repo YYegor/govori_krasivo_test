@@ -16,6 +16,7 @@ class RecorderService {
       micGain: 1.0,
       processorBufferSize: 2048,
       stopTracksAndCloseCtxWhenFinished: true,
+
       usingMediaRecorder: typeof window.MediaRecorder !== 'undefined',
       //userMediaConstraints: { audio: true }
       userMediaConstraints: { audio: { echoCancellation: false } }
@@ -53,6 +54,7 @@ class RecorderService {
     else {
       this.destinationNode = this.audioCtx.destination
     }
+
 
     // Create web worker for doing the encoding
     if (!this.config.usingMediaRecorder) {

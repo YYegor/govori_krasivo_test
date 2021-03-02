@@ -1,0 +1,26 @@
+    {% for tag_s in tags_selected %}
+    <button  class="tags_selected"><b>{{ tag_s }}</b></button>
+    {% endfor %}
+    <br />
+    <br />
+
+    {% for tag in tags %}
+    <button onclick="load_lib_tags('{{ tag }}');" class="tags">{{ tag }}</button>
+    {% endfor %}
+    <br />
+    <br />
+
+
+    {% for coll in collection %}
+    <hr/>
+            {% for t in coll[0] %}
+
+            <button onclick="load_lib_tags('{{ t }}');" class="tags">{{t}}</button>
+            {% endfor %}
+        <div>{{coll[1] | safe }}</div>
+    <br />
+    <br />
+    {% endfor %}
+
+
+
