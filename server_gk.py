@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
 # 02.12.2020, created by Egor Eremenko
 import sys
-from flask import Flask, request, jsonify, render_template, url_for
+from flask import Flask, request, jsonify, render_template, url_for, redirect
 
 import datetime as dt
 from werkzeug.routing import BaseConverter
 from flask import send_from_directory
 import logo_stuff as ls
 import config as cfg
+from flask_login import LoginManager, login_required
+
+from flask_authorize import Authorize
+from flask_migrate import Migrate
+from config import Config
+
 
 class RegexConverter(BaseConverter):
     def __init__(self, url_map, *items):
@@ -18,7 +24,19 @@ class RegexConverter(BaseConverter):
 app = Flask(__name__)
 # включить поддержку regex
 app.url_map.converters['regex'] = RegexConverter
+app.config.from_object(Config)
+print('start')
 
+login = LoginManager(app)
+login.init_app(app)
+authorize = Authorize(app)
+# from models import db
+# migrate = Migrate(app, db)
+
+@login.user_loader
+def load_user(user_id):
+    if User.get(user_id) or None
+    return
 
 def audio_full_path_gen(user_uid='', file_ext=u'webm', filename_prefix=u'a'):
     timestamp = dt.datetime.now().strftime("%y%m%d_%H%M%S_%f")
@@ -47,6 +65,7 @@ def save_audio_to_file(audio_filename, data):
 
     return True
 
+
 @app.route('/save_audio', methods=['POST'])
 def user_audio_save():
     print(u'mime: ', request.mimetype, file=sys.stderr)
@@ -68,14 +87,17 @@ def user_audio_save():
 
     return jsonify({"redirect": "configsuccess"})
 
-@app.route('/'+cfg.audio_folder+'/<regex("a.*\.webm"):file>')
+
+@app.route('/' + cfg.audio_folder + '/<regex("a.*\.webm"):file>')
 def get_user_audio_webm(file):
     print(file)
     return send_from_directory(cfg.audio_folder_dash, file, mimetype='audio/webm')
 
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(cfg.static, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 # ключ для пользователя для страницы
 @app.route('/<regex("[a-f0-9]{7}"):uid>')
@@ -87,21 +109,26 @@ def user_week_config_open(uid):
 
 
 @app.route('/')
+@login_required
 def user_hello_server():
     return u'Сервер готов'
 
 
-#секция ошибок
+# секция ошибок
 def error_404(e):
-    #TODO включить логи 404
+    # TODO включить логи 404
     return 'Ой! Такой страницы нет. Попробуйте другой адрес :)', 404
+
+
 app.register_error_handler(404, error_404)
 
-def error_500(e):
-    #TODO включить логи 500
-    return 'Ой! Что-то сломалось на стороне сервера. Мы уже чиним!<br/>', 500
-app.register_error_handler(500, error_500)
 
+def error_500(e):
+    # TODO включить логи 500
+    return 'Ой! Что-то сломалось на стороне сервера. Мы уже чиним!<br/>', 500
+
+
+app.register_error_handler(500, error_500)
 
 # подключение модуля логопеда
 app.register_blueprint(ls.logo_cabinet_bp)
@@ -113,7 +140,18 @@ app.register_blueprint(ls.logo_save_fail_bp)
 app.register_blueprint(ls.logo_new_task_bp)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect('/logo_cabinet')
+    return render_template('login.html', error=error)
 
 
 if __name__ == '__main__':
     app.run()
+
+

@@ -7,7 +7,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import config as cfg
-from  functools import lru_cache
+from functools import lru_cache
+
 
 # example from google API
 def text_read_paragraph_element(element):
@@ -76,6 +77,7 @@ def get_video_data():
     values = result.get('values', [])
 
     return values
+
 
 # def get_user_records():
 #     # If modifying these scopes, delete the file token.pickle.
@@ -165,12 +167,12 @@ def get_user_crm_data():
     else:
         # print(values)
 
-
         for rows in values[1:]:
             clients[rows[0]] = rows[1]
         # print(clients)
 
     return clients
+
 
 @lru_cache(maxsize=8)
 def get_text_library():
@@ -212,7 +214,6 @@ def get_text_library():
     return text_list
 
 
-
 def text_lib_find_sound_pos(text_list: list, sound: str):
     '''
     найти все позиции знака "=", то есть границ текста на определенную букву
@@ -247,8 +248,9 @@ def text_lib_get_s_collection(sound_content: list):
             for j, subline in enumerate(sound_content[i + 1:]):
                 if subline != u'}\n':
                     str_temp += subline
-                else: break
-            #collection.append(str_temp.replace('\n', '<br />'))
+                else:
+                    break
+            # collection.append(str_temp.replace('\n', '<br />'))
             collection.append(str_temp)
     return collection
 
@@ -270,7 +272,7 @@ def get_sound_collection(sound=u'Л', nocache=False):
         try:
             p0, p1 = text_lib_find_sound_pos(content, sound)
         except:
-            print (' get_sound_collection text_lib_find_sound_pos returned problem')
+            print(' get_sound_collection text_lib_find_sound_pos returned problem')
 
     if p0 is not None and p1 is not None:
         try:
@@ -281,19 +283,19 @@ def get_sound_collection(sound=u'Л', nocache=False):
     return return_list
 
 
-#https://govorikrasivo.atlassian.net/browse/GK-7
-def find_sound_collection_tags(text_lib_get_s_collection:list, sound='Р'):
+# https://govorikrasivo.atlassian.net/browse/GK-7
+def find_sound_collection_tags(text_lib_get_s_collection: list, sound='Р'):
     lines = text_lib_get_s_collection
-    #найти все теги, заключенные в []
+    # найти все теги, заключенные в []
     return list(set(extract_tags(lines)))
 
 
-#https://govorikrasivo.atlassian.net/browse/GK-7
+# https://govorikrasivo.atlassian.net/browse/GK-7
 def extract_tags(lines):
     tags = []
 
     for line in lines:
-        #print('extract_tags loop', line)
+        # print('extract_tags loop', line)
 
         endl = line.rfind(']')
         line = line[1:endl]
@@ -307,31 +309,32 @@ def extract_tags(lines):
     return tags
 
 
-#https://govorikrasivo.atlassian.net/browse/GK-7
-def find_text_by_tag(text_lib_get_s_collection:list, tags_set:list):
+# https://govorikrasivo.atlassian.net/browse/GK-7
+def find_text_by_tag(text_lib_get_s_collection: list, tags_set: list):
     resulting_texts = []
     for line in text_lib_get_s_collection:
         tags = extract_tags([line])
-        #print ('line ', line)
-        #print ('tags ', tags)
+        # print ('line ', line)
+        # print ('tags ', tags)
 
-        #TODO CONTINUE. нужно находить тексты без тегов,
+        # TODO CONTINUE. нужно находить тексты без тегов,
 
-        #перечечение сетов дает сет размера tags_set, то есть в текущей линии нашлись оба тега
+        # перечечение сетов дает сет размера tags_set, то есть в текущей линии нашлись оба тега
         if len(list(set(tags) & set(tags_set))) == len(tags_set):
             resulting_texts.append(line)
     return resulting_texts
 
-#https://govorikrasivo.atlassian.net/browse/GK-7
-def text_convert_strcoll_listcoll(collection:list, convert_n=False):
+
+# https://govorikrasivo.atlassian.net/browse/GK-7
+def text_convert_strcoll_listcoll(collection: list, convert_n=False):
     tags_n_lines = []
     for coll in collection:
 
         tags = extract_tags([coll])
-        pure_line = coll[str(coll).find('\n')+1:]
+        pure_line = coll[str(coll).find('\n') + 1:]
         if convert_n == True:
             pure_line = pure_line.replace('\n', '<br />')
-        #print (pure_line)
+        # print (pure_line)
         tags_n_lines.append((tags, pure_line))
 
     return tags_n_lines
@@ -390,12 +393,12 @@ if __name__ == '__main__':
     coll = get_sound_collection(sound="Р")
     print(extract_tags(coll))
 
-    selected_lines = find_text_by_tag(coll, ['д/з','сложно'])
+    selected_lines = find_text_by_tag(coll, ['д/з', 'сложно'])
 
     all_tags = find_sound_collection_tags(selected_lines)
 
     print(text_convert_strcoll_listcoll(selected_lines, convert_n=True))
-    #print (all_tags)
+    # print (all_tags)
 
     exit()
 

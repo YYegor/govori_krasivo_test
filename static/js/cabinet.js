@@ -48,8 +48,6 @@ function save_config(e)
 	//console.log($("#module1_text").val());
 	//console.log($("#module1_video").val());
 	//console.log($("#module1_uaction").val());
-	
-  	
 
   url = '/save_week';
   

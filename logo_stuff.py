@@ -24,8 +24,10 @@ def debug_convert_cfg_json(decoded_data):
 def save_week_conf_to_file(data, filename=u'data.json'):
     r = loads(data.decode())
     client_id = r['client']
+    week_id = r['week_number_input']
+    task_id = r['task_number']
     # TODO: заменить имя файла на автоматическое
-    filename = cfg.week_cfg_folder + '/' + u'data_' + str(client_id) + u'.json'
+    filename = f'{cfg.week_cfg_folder}/data_{client_id}_w{week_id}_{task_id}.json'
 
     if cfg.DEBUG:
         print(filename, 'file will be saved')
@@ -110,7 +112,7 @@ def get_text_data(sound='Р'):
         pass
     tags_requested = list(set(tags_requested))
     # если библиотека загружена заново (пустые теги), то перечитать библиотеку из googledocs
-    if tags_requested == []:
+    if not tags_requested:
         text_coll = ext_data.get_sound_collection(sound, nocache=True)
     else:
         text_coll = ext_data.get_sound_collection(sound)
@@ -127,7 +129,7 @@ def get_text_data(sound='Р'):
     if len(tags_requested) > 0:
         tags_requested = sorted(tags_requested)
 
-    tags_colls = ext_data.text_convert_strcoll_listcoll(selected_lines, convert_n=True)
+    tags_colls = ext_data.text_convert_strcoll_listcoll(selected_lines, convert_n=True)[:20]
 
     return render_template(u'logo_text_sugg.html', tags_selected=tags_requested, tags=all_tags, collection=tags_colls)
 
@@ -156,7 +158,7 @@ def logo_cabinet():
 
     video_list = ext_data.get_video_data()[1:]
     # TODO: exception for video
-    return render_template('logo_cabinet.html', clients=clients_list, video=video_list)
+    return render_template('logo_cabinet_v2.html', clients=clients_list, video=video_list)
 
 
 # https://govorikrasivo.atlassian.net/browse/GK-9
