@@ -15,8 +15,8 @@ week_cfg_folder = os.path.join(u'static', u'weeks')
 # crm on google sheets
 g_scope_docs_read_only = ['https://www.googleapis.com/auth/documents.readonly']
 g_scope_sheets_read_only = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-clients_spreadsheet_id = u'1Cn4X8htkVz_EzFjBo7lWI0FtGHxWI4m1GUyoi1vhap4'
-text_library_docs_id = u'1OhSalTTCOpZ-mlhEGGPlfRMMEdtOBLdq4hxayMhqXpo'
+clients_spreadsheet_id = u''
+text_library_docs_id = u''
 clients_range_name = u'clients!A1:G7'
 video_range_name = u'video!A1:E100'
 g_sheet_creds_path = os.path.join(u'secret', u'credentials.json')
